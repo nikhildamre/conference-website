@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { FaDownload, FaEye, FaFileExcel, FaFilePdf } from 'react-icons/fa';
+import { FaDownload, FaEye, FaFileExcel, FaFilePdf, FaSignOutAlt } from 'react-icons/fa';
+import AdminLogin from '../components/AdminLogin';
 
 const AdminPanel = () => {
   const [registrations, setRegistrations] = useState([]);
@@ -8,17 +9,30 @@ const AdminPanel = () => {
   const [contacts, setContacts] = useState([]);
   const [activeTab, setActiveTab] = useState('registrations');
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authToken, setAuthToken] = useState(null);
 
   useEffect(() => {
-    fetchData();
+    const token = localStorage.getItem('adminToken');
+    if (token) {
+      setAuthToken(token);
+      setIsAuthenticated(true);
+      fetchData(token);
+    } else {
+      setLoading(false);
+    }
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async (token = authToken) => {
     try {
+      const headers = {
+        'Authorization': `Bearer ${token}`
+      };
+      
       const [regRes, paperRes, contactRes] = await Promise.all([
-        fetch('/api/admin/registrations'),
-        fetch('/api/admin/papers'),
-        fetch('/api/admin/contacts')
+        fetch('/api/admin/registrations', { headers }),
+        fetch('/api/admin/papers', { headers }),
+        fetch('/api/admin/contacts', { headers })
       ]);
 
       const regData = await regRes.json();
@@ -37,7 +51,11 @@ const AdminPanel = () => {
 
   const downloadExcel = async (type) => {
     try {
-      const response = await fetch(`/api/admin/download/${type}/excel`);
+      const response = await fetch(`/api/admin/download/${type}/excel`, {
+        headers: {
+          'Authorization': `Bearer ${authToken}`
+        }
+      });
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -51,7 +69,11 @@ const AdminPanel = () => {
 
   const downloadPDF = async (type) => {
     try {
-      const response = await fetch(`/api/admin/download/${type}/pdf`);
+      const response = await fetch(`/api/admin/download/${type}/pdf`, {
+        headers: {
+          'Authorization': `Bearer ${authToken}`
+        }
+      });
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -62,6 +84,25 @@ const AdminPanel = () => {
       console.error('Error downloading PDF:', error);
     }
   };
+
+  const handleLogin = (token) => {
+    setAuthToken(token);
+    setIsAuthenticated(true);
+    fetchData(token);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminToken');
+    setIsAuthenticated(false);
+    setAuthToken(null);
+    setRegistrations([]);
+    setPapers([]);
+    setContacts([]);
+  };
+
+  if (!isAuthenticated) {
+    return <AdminLogin onLogin={handleLogin} isLoading={loading} />;
+  }
 
   if (loading) {
     return (
@@ -79,8 +120,19 @@ const AdminPanel = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-emerald-600 to-teal-700 px-8 py-6">
-            <h1 className="text-3xl font-bold text-white">Admin Panel</h1>
-            <p className="text-emerald-100">Conference Management Dashboard</p>
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-3xl font-bold text-white">Admin Panel</h1>
+                <p className="text-emerald-100">Conference Management Dashboard</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors flex items-center"
+              >
+                <FaSignOutAlt className="mr-2" />
+                Logout
+              </button>
+            </div>
           </div>
 
           {/* Tabs */}

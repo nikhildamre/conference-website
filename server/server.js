@@ -13,6 +13,28 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Admin credentials
+const ADMIN_EMAIL = 'nikhildamre17@gmail.com';
+const ADMIN_PASSWORD = '123456';
+
+// Admin authentication middleware
+const authenticateAdmin = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ success: false, message: 'Authentication required' });
+  }
+  
+  const token = authHeader.substring(7);
+  
+  // Simple token validation (in production, use JWT)
+  if (token === Buffer.from(`${ADMIN_EMAIL}:${ADMIN_PASSWORD}`).toString('base64')) {
+    next();
+  } else {
+    res.status(401).json({ success: false, message: 'Invalid credentials' });
+  }
+};
+
 // Serve React static files (build for production, public for development)
 const staticPath = process.env.NODE_ENV === 'production' 
   ? path.join(__dirname, '../build')
@@ -28,6 +50,25 @@ const ensureDataDir = async () => {
     await fs.mkdir(dataDir, { recursive: true });
   }
 };
+
+// Admin login endpoint
+app.post('/api/admin/login', (req, res) => {
+  const { email, password } = req.body;
+  
+  if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    const token = Buffer.from(`${email}:${password}`).toString('base64');
+    res.json({ 
+      success: true, 
+      token: token,
+      message: 'Login successful'
+    });
+  } else {
+    res.status(401).json({ 
+      success: false, 
+      message: 'Invalid email or password'
+    });
+  }
+});
 
 // Contact form submission
 app.post('/api/contact', async (req, res) => {
@@ -133,8 +174,8 @@ app.post('/api/submit-paper', async (req, res) => {
   }
 });
 
-// Admin endpoints
-app.get('/api/admin/registrations', async (req, res) => {
+// Admin endpoints (protected)
+app.get('/api/admin/registrations', authenticateAdmin, async (req, res) => {
   try {
     const filePath = path.join(__dirname, 'data', 'registrations.json');
     const data = await fs.readFile(filePath, 'utf8');
@@ -145,7 +186,7 @@ app.get('/api/admin/registrations', async (req, res) => {
   }
 });
 
-app.get('/api/admin/papers', async (req, res) => {
+app.get('/api/admin/papers', authenticateAdmin, async (req, res) => {
   try {
     const filePath = path.join(__dirname, 'data', 'papers.json');
     const data = await fs.readFile(filePath, 'utf8');
@@ -156,7 +197,7 @@ app.get('/api/admin/papers', async (req, res) => {
   }
 });
 
-app.get('/api/admin/contacts', async (req, res) => {
+app.get('/api/admin/contacts', authenticateAdmin, async (req, res) => {
   try {
     const filePath = path.join(__dirname, 'data', 'contacts.json');
     const data = await fs.readFile(filePath, 'utf8');
@@ -167,8 +208,8 @@ app.get('/api/admin/contacts', async (req, res) => {
   }
 });
 
-// Download endpoints for Excel
-app.get('/api/admin/download/:type/excel', async (req, res) => {
+// Download endpoints for Excel (protected)
+app.get('/api/admin/download/:type/excel', authenticateAdmin, async (req, res) => {
   try {
     const { type } = req.params;
     const filePath = path.join(__dirname, 'data', `${type}.json`);
@@ -207,8 +248,8 @@ app.get('/api/admin/download/:type/excel', async (req, res) => {
   }
 });
 
-// Download endpoints for PDF
-app.get('/api/admin/download/:type/pdf', async (req, res) => {
+// Download endpoints for PDF (protected)
+app.get('/api/admin/download/:type/pdf', authenticateAdmin, async (req, res) => {
   try {
     const { type } = req.params;
     const filePath = path.join(__dirname, 'data', `${type}.json`);
