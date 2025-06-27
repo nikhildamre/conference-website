@@ -12,6 +12,7 @@ import Publication from './pages/Publication';
 import Venue from './pages/Venue';
 import Registration from './pages/Registration';
 import Contact from './pages/Contact';
+import RegistrationForm from './pages/RegistrationForm';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/publication" element={<Publication />} />
             <Route path="/venue" element={<Venue />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/registration-form" element={<RegistrationForm />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

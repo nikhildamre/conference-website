@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FaUser, FaUniversity, FaEnvelope } from 'react-icons/fa';
 
@@ -45,7 +44,7 @@ const Committees = () => {
             Meet the distinguished professionals guiding ICATES-2025
           </p>
         </div>
-        
+
         <div className="space-y-12">
           {committeeData.map((committee, index) => (
             <div 
@@ -58,7 +57,7 @@ const Committees = () => {
                   {committee.title}
                 </h2>
               </div>
-              
+
               <div className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                   {committee.members.map((member, idx) => (
@@ -70,19 +69,19 @@ const Committees = () => {
                         <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                           <FaUser className="text-white text-lg" />
                         </div>
-                        
+
                         <div className="flex-1 min-w-0">
                           <h3 className="text-lg font-bold text-emerald-800 mb-2 leading-tight">
                             {member.name}
                           </h3>
-                          
+
                           <div className="flex items-center text-gray-600 mb-2">
                             <FaUniversity className="text-emerald-600 mr-2 flex-shrink-0" />
                             <span className="text-sm font-medium truncate">
                               {member.affiliation}
                             </span>
                           </div>
-                          
+
                           <div className="flex items-center text-gray-600">
                             <FaEnvelope className="text-emerald-600 mr-2 flex-shrink-0" />
                             <a 
@@ -101,7 +100,7 @@ const Committees = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="mt-16 text-center animate-fadeInUp">
           <div className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold gradient-text-primary mb-4">

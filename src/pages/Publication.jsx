@@ -115,20 +115,20 @@ const Publication = () => {
               Get the necessary templates and guidelines for your paper submission
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a 
-                href="#"
+              <button 
                 className="bg-white text-emerald-700 px-8 py-4 rounded-full font-bold hover:bg-emerald-50 transition-colors inline-flex items-center"
+                onClick={() => alert('Paper template download will be available soon!')}
               >
                 <FaDownload className="mr-2" />
                 Paper Template
-              </a>
-              <a 
-                href="#"
+              </button>
+              <button 
                 className="bg-emerald-500 text-white px-8 py-4 rounded-full font-bold hover:bg-emerald-400 transition-colors inline-flex items-center"
+                onClick={() => alert('Style guide download will be available soon!')}
               >
                 <FaBook className="mr-2" />
                 Style Guide
-              </a>
+              </button>
             </div>
           </div>
         </div>

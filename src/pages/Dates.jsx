@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaClock } from 'react-icons/fa';
 
 const Dates = () => {
   const importantDates = [
