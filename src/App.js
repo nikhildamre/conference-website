@@ -5,13 +5,13 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import CallForPapers from './pages/CallForPapers';
-import Publication from './pages/Publication';
-import Dates from './pages/Dates';
-import Committees from './pages/Committees';
 import Speakers from './pages/Speakers';
+import Committees from './pages/Committees';
+import Dates from './pages/Dates';
+import Publication from './pages/Publication';
+import Venue from './pages/Venue';
 import Registration from './pages/Registration';
 import Contact from './pages/Contact';
-import Venue from './pages/Venue';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -25,13 +25,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/call-for-papers" element={<CallForPapers />} />
-            <Route path="/publication" element={<Publication />} />
-            <Route path="/dates" element={<Dates />} />
-            <Route path="/committees" element={<Committees />} />
             <Route path="/speakers" element={<Speakers />} />
+            <Route path="/committees" element={<Committees />} />
+            <Route path="/dates" element={<Dates />} />
+            <Route path="/publication" element={<Publication />} />
+            <Route path="/venue" element={<Venue />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/venue" element={<Venue />} />
           </Routes>
         </main>
         <Footer />
