@@ -13,6 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Serve React static files
+app.use(express.static(path.join(__dirname, '../build')));
+
 // Ensure data directory exists
 const ensureDataDir = async () => {
   const dataDir = path.join(__dirname, 'data');
@@ -127,7 +130,7 @@ app.post('/api/submit-paper', async (req, res) => {
   }
 });
 
-// Get all registrations (admin endpoint)
+// Admin endpoints
 app.get('/api/admin/registrations', async (req, res) => {
   try {
     const filePath = path.join(__dirname, 'data', 'registrations.json');
@@ -139,9 +142,143 @@ app.get('/api/admin/registrations', async (req, res) => {
   }
 });
 
+app.get('/api/admin/papers', async (req, res) => {
+  try {
+    const filePath = path.join(__dirname, 'data', 'papers.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const papers = JSON.parse(data);
+    res.json(papers);
+  } catch (error) {
+    res.json([]);
+  }
+});
+
+app.get('/api/admin/contacts', async (req, res) => {
+  try {
+    const filePath = path.join(__dirname, 'data', 'contacts.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const contacts = JSON.parse(data);
+    res.json(contacts);
+  } catch (error) {
+    res.json([]);
+  }
+});
+
+// Download endpoints for Excel
+app.get('/api/admin/download/:type/excel', async (req, res) => {
+  try {
+    const { type } = req.params;
+    const filePath = path.join(__dirname, 'data', `${type}.json`);
+    
+    let data = [];
+    try {
+      const fileData = await fs.readFile(filePath, 'utf8');
+      data = JSON.parse(fileData);
+    } catch {
+      data = [];
+    }
+
+    // Convert JSON to CSV (simplified Excel format)
+    let csv = '';
+    if (data.length > 0) {
+      // Headers
+      const headers = Object.keys(data[0]);
+      csv += headers.join(',') + '\n';
+      
+      // Data rows
+      data.forEach(row => {
+        const values = headers.map(header => {
+          const value = row[header] || '';
+          return `"${value.toString().replace(/"/g, '""')}"`;
+        });
+        csv += values.join(',') + '\n';
+      });
+    }
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="${type}_${new Date().toISOString().split('T')[0]}.csv"`);
+    res.send(csv);
+  } catch (error) {
+    console.error('Error generating Excel:', error);
+    res.status(500).json({ error: 'Failed to generate Excel file' });
+  }
+});
+
+// Download endpoints for PDF
+app.get('/api/admin/download/:type/pdf', async (req, res) => {
+  try {
+    const { type } = req.params;
+    const filePath = path.join(__dirname, 'data', `${type}.json`);
+    
+    let data = [];
+    try {
+      const fileData = await fs.readFile(filePath, 'utf8');
+      data = JSON.parse(fileData);
+    } catch {
+      data = [];
+    }
+
+    // Simple HTML to PDF conversion (basic implementation)
+    let html = `
+      <html>
+        <head>
+          <title>${type.toUpperCase()} Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            h1 { color: #333; }
+          </style>
+        </head>
+        <body>
+          <h1>${type.toUpperCase()} Report</h1>
+          <p>Generated on: ${new Date().toLocaleDateString()}</p>
+          <table>
+    `;
+
+    if (data.length > 0) {
+      // Headers
+      const headers = Object.keys(data[0]);
+      html += '<tr>';
+      headers.forEach(header => {
+        html += `<th>${header}</th>`;
+      });
+      html += '</tr>';
+
+      // Data rows
+      data.forEach(row => {
+        html += '<tr>';
+        headers.forEach(header => {
+          html += `<td>${row[header] || ''}</td>`;
+        });
+        html += '</tr>';
+      });
+    }
+
+    html += `
+          </table>
+        </body>
+      </html>
+    `;
+
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Disposition', `attachment; filename="${type}_${new Date().toISOString().split('T')[0]}.html"`);
+    res.send(html);
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    res.status(500).json({ error: 'Failed to generate PDF file' });
+  }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Serve React app for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {

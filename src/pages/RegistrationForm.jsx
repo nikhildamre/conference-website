@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaCreditCard } from 'react-icons/fa';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

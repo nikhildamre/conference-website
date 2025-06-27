@@ -11,9 +11,10 @@ import Dates from './pages/Dates';
 import Publication from './pages/Publication';
 import Venue from './pages/Venue';
 import Registration from './pages/Registration';
-import Contact from './pages/Contact';
 import RegistrationForm from './pages/RegistrationForm';
-import ScrollToTop from './components/ScrollToTop';
+import Contact from './pages/Contact';
+import AdminPanel from './pages/AdminPanel';
+import PaperSubmission from './pages/PaperSubmission';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/registration-form" element={<RegistrationForm />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/paper-submission" element={<PaperSubmission />} />
           </Routes>
         </main>
         <Footer />
