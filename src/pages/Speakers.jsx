@@ -72,8 +72,12 @@ const Speakers = () => {
                 <div className="bg-white p-6">
                   <div className="flex justify-center">
                     <div className="relative">
-                      <div className="w-24 h-24 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
-                        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-20 h-20" />
+                      <div className="w-24 h-24 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 p-1">
+                        <img 
+                          src={`https://via.placeholder.com/80x80/1e40af/ffffff?text=${speaker.name.split(' ').map(n => n[0]).join('')}`}
+                          alt={speaker.name}
+                          className="w-full h-full rounded-full object-cover bg-white"
+                        />
                       </div>
                     </div>
                   </div>

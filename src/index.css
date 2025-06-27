@@ -175,11 +175,22 @@ html {
 
 /* Enhanced button styles */
 .btn-primary {
-  @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base;
 }
 
 .btn-secondary {
-  @apply bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  @apply bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base;
+}
+
+/* Improved mobile responsiveness */
+@media (max-width: 640px) {
+  .glass-effect, .glass-dark {
+    backdrop-filter: blur(8px);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
 }
 
 /* Loading animations */

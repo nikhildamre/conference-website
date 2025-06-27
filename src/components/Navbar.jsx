@@ -32,20 +32,24 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled 
         ? 'glass-dark shadow-2xl py-2' 
-        : 'bg-transparent py-4'
+        : 'bg-black/20 backdrop-blur-sm py-4'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg">
-              <FaGraduationCap className="text-white text-xl" />
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg p-2">
+              <img 
+                src="https://via.placeholder.com/40x40/1e40af/ffffff?text=VPPCOE" 
+                alt="VPPCOE Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-white drop-shadow-lg">
                 ICATES-2025
               </h1>
-              <p className="text-xs text-gray-300">Engineering & Science</p>
+              <p className="text-xs text-cyan-200 drop-shadow">Engineering & Science</p>
             </div>
           </Link>
 
@@ -93,7 +97,7 @@ const Navbar = () => {
         <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
           isOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
         }`}>
-          <div className="glass-dark rounded-2xl p-4 space-y-2">
+          <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-4 space-y-2 border border-white/20">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

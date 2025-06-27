@@ -77,12 +77,20 @@ const Home = () => {
 
         <div className="relative z-10 px-4 max-w-6xl mx-auto">
           {/* Sponsor logos with enhanced animation */}
-          <div className="flex justify-center space-x-8 mb-12 animate-fadeInUp">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="glass-effect p-4 rounded-2xl animate-float hover:animate-glow transition-all duration-300" style={{animationDelay: `${i * 0.5}s`}}>
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                  S{i}
-                </div>
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-12 animate-fadeInUp px-4">
+            {[
+              { name: "Tech Corp", logo: "https://via.placeholder.com/80x80/3b82f6/ffffff?text=TC" },
+              { name: "Innovation Labs", logo: "https://via.placeholder.com/80x80/06b6d4/ffffff?text=IL" },
+              { name: "Future Systems", logo: "https://via.placeholder.com/80x80/8b5cf6/ffffff?text=FS" },
+              { name: "Digital Solutions", logo: "https://via.placeholder.com/80x80/10b981/ffffff?text=DS" }
+            ].map((sponsor, i) => (
+              <div key={i} className="glass-effect p-4 rounded-2xl animate-float hover:animate-glow transition-all duration-300 group" style={{animationDelay: `${i * 0.3}s`}}>
+                <img 
+                  src={sponsor.logo} 
+                  alt={sponsor.name}
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-contain transform group-hover:scale-110 transition-transform duration-300"
+                />
+                <p className="text-xs text-cyan-200 text-center mt-2 font-medium">{sponsor.name}</p>
               </div>
             ))}
           </div>
@@ -94,11 +102,11 @@ const Home = () => {
           </div>
           
           <div className="animate-scaleIn" style={{animationDelay: '0.6s'}}>
-            <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tight">
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight leading-tight">
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient block sm:inline">
                 ICATES
               </span>
-              <span className="text-white">-2025</span>
+              <span className="text-white block sm:inline">-2025</span>
             </h1>
           </div>
           
@@ -132,12 +140,12 @@ const Home = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-12 animate-fadeInUp" style={{animationDelay: '1.5s'}}>
-            <Link to="/registration" className="btn-primary group">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-12 animate-fadeInUp px-4" style={{animationDelay: '1.5s'}}>
+            <Link to="/registration" className="btn-primary group w-full sm:w-auto text-center">
               Register Now
               <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
-            <Link to="/call-for-papers" className="btn-secondary group">
+            <Link to="/call-for-papers" className="btn-secondary group w-full sm:w-auto text-center">
               Submit Paper
               <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
