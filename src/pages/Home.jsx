@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaCalendarAlt, FaMapMarkerAlt, FaPaperPlane, FaUsers, FaAward, FaGlobeAmericas, FaChevronDown } from 'react-icons/fa';
 
 const Home = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
@@ -35,7 +35,7 @@ const Home = () => {
       setCurrentSlide((prev) => (prev + 1) % conferenceThemes.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [conferenceThemes.length]);
 
   const ParticleBackground = () => (
     <div className="particle-bg">
