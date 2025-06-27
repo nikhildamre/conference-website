@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaPhone, FaUniversity, FaCreditCard } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +23,7 @@ const RegistrationForm = () => {
         },
         body: JSON.stringify(formData)
       });
-      
+
       const result = await response.json();
       if (result.success) {
         alert(`Registration submitted successfully! Your registration ID is: ${result.registrationId}`);
@@ -72,7 +71,7 @@ const RegistrationForm = () => {
                 <FaUser className="mr-3" />
                 Personal Information
               </h2>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-emerald-800 font-bold mb-2">Full Name *</label>
@@ -141,7 +140,7 @@ const RegistrationForm = () => {
               <h2 className="text-2xl font-bold gradient-text-primary mb-6">
                 Registration Category
               </h2>
-              
+
               <div className="grid md:grid-cols-3 gap-4">
                 {['student', 'academic', 'industry'].map((category) => (
                   <label key={category} className="cursor-pointer">
@@ -176,7 +175,7 @@ const RegistrationForm = () => {
               <h2 className="text-2xl font-bold gradient-text-primary mb-6">
                 Paper Information (Optional)
               </h2>
-              
+
               <div>
                 <label className="block text-emerald-800 font-bold mb-2">Paper Title</label>
                 <input
