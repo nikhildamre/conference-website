@@ -1,4 +1,6 @@
-
+The code changes enhance the registration data table with statistics and improved formatting.
+```
+```replit_final_file
 import React, { useState, useEffect } from 'react';
 import { FaDownload, FaEye, FaFileExcel, FaFilePdf, FaSignOutAlt } from 'react-icons/fa';
 import AdminLogin from '../components/AdminLogin';
@@ -28,7 +30,7 @@ const AdminPanel = () => {
       const headers = {
         'Authorization': `Bearer ${token}`
       };
-      
+
       const [regRes, paperRes, contactRes] = await Promise.all([
         fetch('/api/admin/registrations', { headers }),
         fetch('/api/admin/papers', { headers }),
@@ -198,34 +200,79 @@ const AdminPanel = () => {
             </div>
 
             {/* Content */}
-            {activeTab === 'registrations' && (
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Organization</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {registrations.map((reg) => (
-                      <tr key={reg.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{reg.fullName}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reg.email}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">{reg.category}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reg.organization}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {new Date(reg.timestamp).toLocaleDateString()}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+            
+            <div className="overflow-x-auto">
+                {activeTab === 'registrations' && (
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-gray-800 mb-2">Registration Statistics</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div>
+                          <span className="text-gray-600">Student:</span>
+                          <span className="ml-2 font-semibold">{registrations.filter(r => r.registrationType === 'student').length}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-600">Faculty:</span>
+                          <span className="ml-2 font-semibold">{registrations.filter(r => r.registrationType === 'faculty').length}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-600">Industry:</span>
+                          <span className="ml-2 font-semibold">{registrations.filter(r => r.registrationType === 'industry').length}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-600">International:</span>
+                          <span className="ml-2 font-semibold">{registrations.filter(r => r.registrationType === 'international').length}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                      <thead>
+                        <tr className="bg-gradient-to-r from-emerald-50 to-teal-50">
+                          <th className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-700">Name</th>
+                          <th className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-700">Email</th>
+                          <th className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-700">Affiliation</th>
+                          <th className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-700">Type</th>
+                          <th className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-700">Status</th>
+                          <th className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-700">Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {registrations.map((reg, index) => (
+                          <tr key={index} className="hover:bg-gray-50 transition-colors">
+                            <td className="border border-gray-200 px-4 py-3">
+                              <div className="font-medium text-gray-900">{reg.fullName}</div>
+                              <div className="text-sm text-gray-500">{reg.phone}</div>
+                            </td>
+                            <td className="border border-gray-200 px-4 py-3 text-blue-600">{reg.email}</td>
+                            <td className="border border-gray-200 px-4 py-3">
+                              <div className="font-medium">{reg.organization}</div>
+                              <div className="text-sm text-gray-500">{reg.designation}</div>
+                            </td>
+                            <td className="border border-gray-200 px-4 py-3">
+                              <span className="px-2 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-medium">
+                                {reg.category}
+                              </span>
+                            </td>
+                            <td className="border border-gray-200 px-4 py-3">
+                              <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
+                                {reg.status || 'Pending'}
+                              </span>
+                            </td>
+                            <td className="border border-gray-200 px-4 py-3 text-sm text-gray-600">
+                              {new Date(reg.timestamp).toLocaleDateString('en-IN', {
+                                day: '2-digit',
+                                month: 'short',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              })}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
 
             {activeTab === 'papers' && (
               <div className="overflow-x-auto">
