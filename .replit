@@ -16,7 +16,7 @@ localPort = 5000
 externalPort = 5000
 
 [workflows]
-runButton = "Full Stack Dev"
+runButton = "Conference App"
 
 [[workflows.workflow]]
 name = "Full Stack Dev"
@@ -26,6 +26,19 @@ mode = "parallel"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd server && npm install && npm start"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"
+
+[[workflows.workflow]]
+name = "Conference App"
+author = 26820223
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd server && npm start"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
