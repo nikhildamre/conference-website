@@ -1,50 +1,45 @@
+
+```jsx
 import React from 'react';
 import { FaPaperPlane, FaCalendarAlt, FaFileAlt, FaCheckCircle } from 'react-icons/fa';
 
 const CallForPapers = () => {
   const tracks = [
     "Artificial Intelligence & Machine Learning",
-    "Cybersecurity & Privacy", 
-    "Data Science & Analytics",
-    "Cloud Computing & Distributed Systems",
-    "Internet of Things (IoT)",
-    "Blockchain Technology",
-    "Human-Computer Interaction",
-    "Software Engineering"
+    "Internet of Things & Smart Systems", 
+    "Cybersecurity & Information Security",
+    "Sustainable Engineering & Green Technology",
+    "Biomedical Engineering & Healthcare Technology"
   ];
 
   const dates = [
-    { event: "Paper Submission Deadline", date: "March 15, 2025" },
-    { event: "Notification of Acceptance", date: "April 20, 2025" },
-    { event: "Camera-Ready Submission", date: "May 10, 2025" },
-    { event: "Conference Date", date: "June 15-17, 2025" }
+    { event: "Abstract Submission Deadline", date: "November 30, 2024" },
+    { event: "Full Paper Submission", date: "December 15, 2024" },
+    { event: "Notification of Acceptance", date: "January 25, 2025" },
+    { event: "Final Paper Submission", date: "February 10, 2025" }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 pt-24 pb-16">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Call for <span className="text-emerald-600">Papers</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Submit your research to ICATES-2025 and join the conversation on advanced technology solutions
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="text-center mb-16 animate-fadeInUp">
+          <h1 className="text-5xl font-bold gradient-text-primary mb-6">Call for Papers</h1>
+          <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mx-auto mb-6"></div>
+          <p className="text-gray-700 text-xl max-w-3xl mx-auto">
+            Submit your research and contribute to advancing technology and innovation
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="flex items-center mb-6">
-              <div className="bg-emerald-100 p-3 rounded-full mr-4">
-                <FaFileAlt className="text-emerald-600 text-2xl" />
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900">Research Tracks</h2>
-            </div>
-
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <FaFileAlt className="mr-3 text-emerald-600" />
+              Research Tracks
+            </h2>
             <div className="space-y-3">
               {tracks.map((track, index) => (
-                <div key={index} className="flex items-center">
-                  <FaCheckCircle className="text-emerald-500 mr-3" />
+                <div key={index} className="flex items-center p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                  <FaCheckCircle className="text-emerald-600 mr-3 flex-shrink-0" />
                   <span className="text-gray-700">{track}</span>
                 </div>
               ))}
@@ -52,13 +47,10 @@ const CallForPapers = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="flex items-center mb-6">
-              <div className="bg-emerald-100 p-3 rounded-full mr-4">
-                <FaCalendarAlt className="text-emerald-600 text-2xl" />
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900">Important Dates</h2>
-            </div>
-
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <FaCalendarAlt className="mr-3 text-emerald-600" />
+              Important Dates
+            </h2>
             <div className="space-y-4">
               {dates.map((item, index) => (
                 <div key={index} className="border-l-4 border-emerald-500 pl-4">
@@ -99,3 +91,4 @@ const CallForPapers = () => {
 };
 
 export default CallForPapers;
+```

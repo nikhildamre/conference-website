@@ -1,76 +1,74 @@
+
+```jsx
 import React from 'react';
 import { FaUser, FaUniversity, FaEnvelope } from 'react-icons/fa';
 
 const Committees = () => {
-  const committees = [
+  const committeeMembers = [
     {
-      title: "Conference Chair",
-      members: [
-        { name: "Dr. John Smith", affiliation: "MIT", email: "john@mit.edu" }
-      ]
+      name: "Dr. Rajesh Kumar",
+      role: "General Chair",
+      affiliation: "Indian Institute of Technology, Delhi",
+      email: "rajesh.kumar@iitd.ac.in"
     },
     {
-      title: "Technical Program Committee",
-      members: [
-        { name: "Dr. Sarah Johnson", affiliation: "Stanford University", email: "sarah@stanford.edu" },
-        { name: "Dr. Michael Brown", affiliation: "Harvard University", email: "michael@harvard.edu" }
-      ]
+      name: "Prof. Priya Sharma",
+      role: "Program Chair",
+      affiliation: "Indian Institute of Science, Bangalore", 
+      email: "priya.sharma@iisc.ac.in"
     },
     {
-      title: "Organizing Committee", 
-      members: [
-        { name: "Dr. Emily Davis", affiliation: "Berkeley", email: "emily@berkeley.edu" },
-        { name: "Dr. David Wilson", affiliation: "Caltech", email: "david@caltech.edu" }
-      ]
+      name: "Dr. Anil Gupta",
+      role: "Technical Program Chair",
+      affiliation: "Indian Institute of Technology, Bombay",
+      email: "anil.gupta@iitb.ac.in"
+    },
+    {
+      name: "Prof. Sunita Agarwal",
+      role: "Publication Chair",
+      affiliation: "Jawaharlal Nehru University, Delhi",
+      email: "sunita.agarwal@jnu.ac.in"
     }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 pt-24 pb-16">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Conference <span className="text-emerald-600">Committees</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Meet the distinguished academics and professionals organizing ICATES-2025
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="text-center mb-16 animate-fadeInUp">
+          <h1 className="text-5xl font-bold gradient-text-primary mb-6">Organizing Committee</h1>
+          <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mx-auto mb-6"></div>
+          <p className="text-gray-700 text-xl max-w-3xl mx-auto">
+            Meet the distinguished academicians and researchers organizing this premier conference
           </p>
         </div>
 
-        <div className="space-y-12">
-          {committees.map((committee, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="bg-gradient-to-r from-emerald-600 to-teal-700 px-8 py-6">
-                <h2 className="text-2xl font-bold text-white">{committee.title}</h2>
-              </div>
-
-              <div className="p-8">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {committee.members.map((member, memberIndex) => (
-                    <div key={memberIndex} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center mb-4">
-                        <div className="bg-emerald-100 p-3 rounded-full">
-                          <FaUser className="text-emerald-600 text-xl" />
-                        </div>
-                      </div>
-
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                        {member.name}
-                      </h3>
-
-                      <div className="flex items-center text-gray-600 mb-2">
-                        <FaUniversity className="mr-2" />
-                        <span className="text-sm">{member.affiliation}</span>
-                      </div>
-
-                      <div className="flex items-center text-gray-600">
-                        <FaEnvelope className="mr-2" />
-                        <a href={`mailto:${member.email}`} className="text-sm text-emerald-600 hover:text-emerald-700">
-                          {member.email}
-                        </a>
-                      </div>
+        <div className="grid lg:grid-cols-2 gap-8">
+          {committeeMembers.map((member, index) => (
+            <div key={index} className="bg-white rounded-3xl shadow-xl p-8 card-hover animate-fadeInUp border border-emerald-100">
+              <div className="flex items-start space-x-6">
+                <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full p-4 flex-shrink-0">
+                  <FaUser className="text-white text-2xl" />
+                </div>
+                
+                <div className="flex-grow">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                  <div className="bg-emerald-100 text-emerald-800 inline-block px-3 py-1 rounded-full text-sm font-medium mb-3">
+                    {member.role}
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center text-gray-600">
+                      <FaUniversity className="mr-3 text-emerald-600" />
+                      <span className="text-sm">{member.affiliation}</span>
                     </div>
-                  ))}
+                    
+                    <div className="flex items-center text-gray-600">
+                      <FaEnvelope className="mr-3 text-emerald-600" />
+                      <a href={`mailto:${member.email}`} className="text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        {member.email}
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,3 +80,4 @@ const Committees = () => {
 };
 
 export default Committees;
+```

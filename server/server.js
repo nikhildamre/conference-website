@@ -315,6 +315,206 @@ app.get('/api/admin/download/:type/pdf', authenticateAdmin, async (req, res) => 
   }
 });
 
+// Email notification endpoint
+app.post('/api/admin/send-email', authenticateAdmin, async (req, res) => {
+  try {
+    const { type, recipientId } = req.body;
+    
+    // In a real application, you would integrate with email services like:
+    // - SendGrid, Mailgun, AWS SES, etc.
+    // - Use nodemailer with SMTP
+    
+    console.log(`Sending ${type} email to recipient ${recipientId}`);
+    
+    // Simulate email sending
+    const emailTemplates = {
+      confirmation: 'Registration confirmation email',
+      acceptance: 'Paper acceptance notification',
+      rejection: 'Paper rejection notification',
+      reminder: 'Event reminder email'
+    };
+    
+    res.json({ 
+      success: true, 
+      message: `${emailTemplates[type] || 'Email'} sent successfully!`
+    });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ success: false, message: 'Failed to send email' });
+  }
+});
+
+// Certificate generation endpoint
+app.post('/api/admin/generate-certificate/:id', authenticateAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // In a real application, you would:
+    // - Use libraries like PDFKit, jsPDF, or Puppeteer
+    // - Load registration data to populate certificate
+    // - Generate PDF with participant name, event details, etc.
+    
+    const certificateHTML = `
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+            .certificate { border: 10px solid #gold; padding: 50px; margin: 20px; }
+            .title { font-size: 48px; color: #333; margin-bottom: 30px; }
+            .subtitle { font-size: 24px; color: #666; margin-bottom: 20px; }
+            .name { font-size: 36px; color: #000; font-weight: bold; margin: 30px 0; }
+            .details { font-size: 18px; color: #333; margin: 20px 0; }
+          </style>
+        </head>
+        <body>
+          <div class="certificate">
+            <h1 class="title">CERTIFICATE OF PARTICIPATION</h1>
+            <p class="subtitle">International Conference on Engineering & Technology</p>
+            <p class="details">This is to certify that</p>
+            <p class="name">[PARTICIPANT NAME]</p>
+            <p class="details">has successfully participated in the conference</p>
+            <p class="details">Date: March 15-17, 2025</p>
+            <p class="details">Certificate ID: CERT-${id}-${Date.now()}</p>
+          </div>
+        </body>
+      </html>
+    `;
+    
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Disposition', `attachment; filename="certificate_${id}.html"`);
+    res.send(certificateHTML);
+  } catch (error) {
+    console.error('Error generating certificate:', error);
+    res.status(500).json({ error: 'Failed to generate certificate' });
+  }
+});
+
+// QR Code generation endpoint
+app.post('/api/admin/generate-qr/:id', authenticateAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // In a real application, you would:
+    // - Use libraries like qrcode, node-qrcode
+    // - Generate QR code with registration details
+    // - Return PNG image
+    
+    const qrData = {
+      registrationId: id,
+      eventName: "International Conference on Engineering & Technology",
+      date: "March 15-17, 2025",
+      venue: "IIT Delhi",
+      generatedAt: new Date().toISOString()
+    };
+    
+    // Simple text-based QR placeholder
+    const qrText = `QR Code for Registration: ${id}\n${JSON.stringify(qrData, null, 2)}`;
+    
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Disposition', `attachment; filename="qr_code_${id}.txt"`);
+    res.send(qrText);
+  } catch (error) {
+    console.error('Error generating QR code:', error);
+    res.status(500).json({ error: 'Failed to generate QR code' });
+  }
+});
+
+// Bulk delete endpoint
+app.post('/api/admin/bulk-delete', authenticateAdmin, async (req, res) => {
+  try {
+    const { type, ids } = req.body;
+    const filePath = path.join(__dirname, 'data', `${type}.json`);
+    
+    let data = [];
+    try {
+      const fileData = await fs.readFile(filePath, 'utf8');
+      data = JSON.parse(fileData);
+    } catch {
+      data = [];
+    }
+    
+    // Filter out items with IDs in the delete list
+    const updatedData = data.filter(item => !ids.includes(item.id));
+    
+    await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2));
+    
+    res.json({ 
+      success: true, 
+      message: `${ids.length} items deleted successfully`,
+      deletedCount: ids.length
+    });
+  } catch (error) {
+    console.error('Error bulk deleting:', error);
+    res.status(500).json({ success: false, message: 'Failed to delete items' });
+  }
+});
+
+// Payment integration endpoint (placeholder)
+app.post('/api/payment/process', async (req, res) => {
+  try {
+    const { amount, currency, paymentMethod, registrationId } = req.body;
+    
+    // In a real application, integrate with payment gateways like:
+    // - Razorpay (popular in India)
+    // - Stripe
+    // - PayPal
+    // - Paytm
+    
+    console.log(`Processing payment: ₹${amount} for registration ${registrationId}`);
+    
+    // Simulate payment processing
+    const paymentResult = {
+      success: true,
+      transactionId: `TXN_${Date.now()}`,
+      amount: amount,
+      currency: currency || 'INR',
+      status: 'completed',
+      timestamp: new Date().toISOString()
+    };
+    
+    res.json(paymentResult);
+  } catch (error) {
+    console.error('Error processing payment:', error);
+    res.status(500).json({ success: false, message: 'Payment processing failed' });
+  }
+});
+
+// Paper review system endpoint
+app.post('/api/admin/review-paper', authenticateAdmin, async (req, res) => {
+  try {
+    const { paperId, reviewerId, score, comments, recommendation } = req.body;
+    
+    const reviewData = {
+      id: Date.now(),
+      paperId,
+      reviewerId,
+      score,
+      comments,
+      recommendation, // 'accept', 'reject', 'minor_revision', 'major_revision'
+      timestamp: new Date().toISOString()
+    };
+    
+    await ensureDataDir();
+    const filePath = path.join(__dirname, 'data', 'reviews.json');
+    
+    let reviews = [];
+    try {
+      const data = await fs.readFile(filePath, 'utf8');
+      reviews = JSON.parse(data);
+    } catch {
+      reviews = [];
+    }
+    
+    reviews.push(reviewData);
+    await fs.writeFile(filePath, JSON.stringify(reviews, null, 2));
+    
+    res.json({ success: true, message: 'Review submitted successfully', reviewId: reviewData.id });
+  } catch (error) {
+    console.error('Error submitting review:', error);
+    res.status(500).json({ success: false, message: 'Failed to submit review' });
+  }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
