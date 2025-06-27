@@ -34,25 +34,25 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-white/95 backdrop-blur-lg shadow-2xl py-2 border-b border-purple-100' 
-        : 'bg-white/80 backdrop-blur-md py-4'
+        ? 'bg-white/98 backdrop-blur-xl shadow-2xl py-2 border-b border-emerald-100' 
+        : 'bg-white/90 backdrop-blur-lg py-4 shadow-lg'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-violet-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg">
               <img 
-                src="https://via.placeholder.com/40x40/ffffff/7c3aed?text=VPPCOE" 
+                src="https://via.placeholder.com/40x40/ffffff/047857?text=VPPCOE" 
                 alt="VPPCOE Logo" 
                 className="w-8 h-8 object-contain"
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-800">
+              <h1 className="text-xl font-bold text-gray-900">
                 ICATES-2025
               </h1>
-              <p className="text-xs text-purple-600 font-medium">Engineering & Science</p>
+              <p className="text-xs text-emerald-700 font-semibold">Engineering & Science</p>
             </div>
           </Link>
 
@@ -64,8 +64,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
                   isActive(link.path)
-                    ? 'text-purple-600 bg-purple-50 font-semibold'
-                    : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50/50'
+                    ? 'text-emerald-700 bg-emerald-50 font-bold'
+                    : 'text-gray-800 hover:text-emerald-700 hover:bg-emerald-50/70'
                 }`}
               >
                 {link.name}

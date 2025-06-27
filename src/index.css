@@ -119,24 +119,31 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-/* Enhanced gradient text */
+/* Enhanced gradient text with better contrast */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #6366f1 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gradient text effects */
-.gradient-text-purple {
-  background: linear-gradient(135deg, #7c3aed, #6366f1, #8b5cf6);
+/* Professional emerald-teal gradient */
+.gradient-text-primary {
+  background: linear-gradient(135deg, #047857, #0f766e, #115e59);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-secondary {
+  background: linear-gradient(135deg, #0f766e, #0d9488, #14b8a6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -180,13 +187,13 @@ html {
   transform-style: preserve-3d;
 }
 
-/* Enhanced button styles */
+/* Professional button styles */
 .btn-primary {
-  @apply bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base;
+  @apply bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-semibold py-4 px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-base border-2 border-emerald-600;
 }
 
 .btn-secondary {
-  @apply bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base;
+  @apply bg-white border-2 border-emerald-700 text-emerald-800 hover:bg-emerald-50 font-semibold py-4 px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-base;
 }
 
 /* Improved mobile responsiveness */

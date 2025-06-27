@@ -60,19 +60,19 @@ const Home = () => {
     <div className="overflow-hidden pt-16">
       {/* Enhanced Hero Section */}
       <section 
-        className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-20 z-20"
+        className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-24 pb-16 z-20"
         style={{
-          background: "linear-gradient(135deg, rgba(55,48,163,0.95) 0%, rgba(79,70,229,0.9) 50%, rgba(124,58,237,0.85) 100%)",
-          transform: `translateY(${scrollY * 0.5}px)`
+          background: "linear-gradient(135deg, rgba(5,46,22,0.95) 0%, rgba(6,78,59,0.93) 30%, rgba(15,118,110,0.9) 70%, rgba(20,184,166,0.85) 100%)",
+          transform: `translateY(${scrollY * 0.3}px)`
         }}
       >
         <ParticleBackground />
         
         {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
-          <div className="absolute top-3/4 right-1/4 w-64 h-64 bg-violet-500 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{animationDelay: '2s'}}></div>
-          <div className="absolute bottom-1/4 left-1/2 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{animationDelay: '4s'}}></div>
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-400 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+          <div className="absolute top-3/4 right-1/4 w-64 h-64 bg-teal-400 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-1/4 left-1/2 w-64 h-64 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{animationDelay: '4s'}}></div>
         </div>
 
         <div className="relative z-30 px-4 max-w-6xl mx-auto">
@@ -96,27 +96,27 @@ const Home = () => {
           </div>
           
           <div className="animate-slideInLeft" style={{animationDelay: '0.3s'}}>
-            <h2 className="gradient-text-purple font-bold text-xl md:text-3xl mb-6 tracking-wide">
+            <h2 className="text-white font-bold text-xl md:text-3xl mb-6 tracking-wide opacity-90">
               International Conference on Advancing Technology in Engineering and Science
             </h2>
           </div>
           
           <div className="animate-scaleIn" style={{animationDelay: '0.6s'}}>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight leading-tight">
-              <span className="bg-gradient-to-r from-purple-400 via-violet-500 to-indigo-600 bg-clip-text text-transparent animate-gradient block sm:inline">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tight leading-tight">
+              <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent animate-gradient block sm:inline drop-shadow-lg">
                 ICATES
               </span>
-              <span className="text-white block sm:inline">-2025</span>
+              <span className="text-white block sm:inline drop-shadow-lg">-2025</span>
             </h1>
           </div>
           
           <div className="animate-slideInRight" style={{animationDelay: '0.9s'}}>
-            <div className="glass-effect px-6 py-3 rounded-full text-purple-200 mb-8 inline-flex items-center space-x-3">
-              <FaCalendarAlt className="text-purple-400" />
-              <span className="font-semibold">March 15-17, 2025</span>
-              <span className="text-gray-300">|</span>
-              <FaMapMarkerAlt className="text-purple-400" />
-              <span className="font-semibold">Mumbai, India</span>
+            <div className="bg-white/15 backdrop-blur-lg px-8 py-4 rounded-full text-white mb-10 inline-flex items-center space-x-4 border border-white/20">
+              <FaCalendarAlt className="text-emerald-300 text-lg" />
+              <span className="font-bold text-lg">March 15-17, 2025</span>
+              <span className="text-emerald-200">|</span>
+              <FaMapMarkerAlt className="text-emerald-300 text-lg" />
+              <span className="font-bold text-lg">Mumbai, India</span>
             </div>
           </div>
 
@@ -159,12 +159,12 @@ const Home = () => {
       </section>
 
       {/* Enhanced Statistics Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-violet-50 relative overflow-hidden z-10">
+      <section className="py-24 bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden z-10">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold gradient-text-purple mb-4">Conference at a Glance</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-20 animate-fadeInUp">
+            <h2 className="text-5xl font-bold gradient-text-primary mb-6">Conference at a Glance</h2>
+            <p className="text-gray-700 text-xl max-w-3xl mx-auto font-medium">
               Join the premier gathering of minds shaping the future of technology
             </p>
           </div>
