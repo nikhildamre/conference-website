@@ -157,6 +157,22 @@ const AdminPanel = () => {
           </div>
 
           <div className="p-8">
+            {/* Stats Cards */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl">
+                <h3 className="text-lg font-semibold mb-2">Total Registrations</h3>
+                <p className="text-3xl font-bold">{registrations.length}</p>
+              </div>
+              <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl">
+                <h3 className="text-lg font-semibold mb-2">Paper Submissions</h3>
+                <p className="text-3xl font-bold">{papers.length}</p>
+              </div>
+              <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl">
+                <h3 className="text-lg font-semibold mb-2">Contact Messages</h3>
+                <p className="text-3xl font-bold">{contacts.length}</p>
+              </div>
+            </div>
+
             {/* Download Buttons */}
             <div className="flex gap-4 mb-6">
               <button
@@ -172,6 +188,12 @@ const AdminPanel = () => {
               >
                 <FaFilePdf className="mr-2" />
                 Download PDF
+              </button>
+              <button
+                onClick={() => window.location.reload()}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+              >
+                🔄 Refresh Data
               </button>
             </div>
 
