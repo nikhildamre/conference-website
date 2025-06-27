@@ -1,72 +1,122 @@
+
+import React from 'react';
 import { FaUser, FaUniversity, FaEnvelope } from 'react-icons/fa';
 
 const Committees = () => {
-  const committees = [
+  const committeeData = [
     {
-      title: "Organizing Committee",
+      title: "Advisory Committee",
       members: [
-        { name: "Dr. Rajesh Kumar", role: "Conference Chair", affiliation: "VPPCOE, Mumbai", email: "rajesh@vppcoe.edu" },
-        { name: "Prof. Anita Sharma", role: "Co-Chair", affiliation: "VPPCOE, Mumbai", email: "anita@vppcoe.edu" },
-        { name: "Dr. Sunil Patel", role: "Secretary", affiliation: "VPPCOE, Mumbai", email: "sunil@vppcoe.edu" }
+        { name: "Dr. Rajesh Kumar", affiliation: "IIT Bombay", email: "rajesh@iitb.ac.in" },
+        { name: "Prof. Meera Sharma", affiliation: "BITS Pilani", email: "meera@bits.ac.in" },
+        { name: "Dr. Amit Patel", affiliation: "NIT Surathkal", email: "amit@nits.ac.in" },
+        { name: "Prof. Sunita Gupta", affiliation: "VJTI Mumbai", email: "sunita@vjti.ac.in" }
       ]
     },
     {
       title: "Technical Program Committee",
       members: [
-        { name: "Dr. Michael Johnson", role: "Program Chair", affiliation: "MIT, USA", email: "mjohnson@mit.edu" },
-        { name: "Prof. Sarah Chen", role: "Co-Chair", affiliation: "Stanford University", email: "schen@stanford.edu" },
-        { name: "Dr. Priya Gupta", role: "Track Chair - AI/ML", affiliation: "IIT Delhi", email: "priya@iitd.ac.in" },
-        { name: "Prof. David Wilson", role: "Track Chair - Robotics", affiliation: "Oxford University", email: "dwilson@ox.ac.uk" }
+        { name: "Dr. Priya Joshi", affiliation: "VPPCOE Mumbai", email: "priya@vppcoe.ac.in" },
+        { name: "Prof. Vikram Singh", affiliation: "Delhi University", email: "vikram@du.ac.in" },
+        { name: "Dr. Neha Agarwal", affiliation: "Pune University", email: "neha@unipune.ac.in" },
+        { name: "Prof. Rohit Mehta", affiliation: "Anna University", email: "rohit@annauniv.edu" }
       ]
     },
     {
-      title: "Advisory Committee",
+      title: "Organizing Committee",
       members: [
-        { name: "Dr. Robert Smith", role: "Advisor", affiliation: "Harvard University", email: "rsmith@harvard.edu" },
-        { name: "Prof. Lisa Zhang", role: "Advisor", affiliation: "Cambridge University", email: "lzhang@cam.ac.uk" },
-        { name: "Dr. Amit Verma", role: "Industry Advisor", affiliation: "Google Research", email: "averma@google.com" }
+        { name: "Dr. Sanjay Patil", affiliation: "VPPCOE Mumbai", email: "sanjay@vppcoe.ac.in" },
+        { name: "Prof. Kavita Desai", affiliation: "VPPCOE Mumbai", email: "kavita@vppcoe.ac.in" },
+        { name: "Dr. Rahul Jain", affiliation: "VPPCOE Mumbai", email: "rahul@vppcoe.ac.in" },
+        { name: "Prof. Anita Shah", affiliation: "VPPCOE Mumbai", email: "anita@vppcoe.ac.in" }
       ]
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-teal-50 pt-20 pb-10">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-emerald-900 mb-8 text-center">
-          Committees
-          <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mx-auto mt-4"></div>
-        </h1>
-
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="text-center mb-16 animate-fadeInUp">
+          <h1 className="text-5xl font-bold gradient-text-primary mb-6">
+            Conference Committees
+          </h1>
+          <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mx-auto mb-6"></div>
+          <p className="text-gray-700 text-xl max-w-3xl mx-auto">
+            Meet the distinguished professionals guiding ICATES-2025
+          </p>
+        </div>
+        
         <div className="space-y-12">
-          {committees.map((committee, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-emerald-800 mb-6 text-center">
-                {committee.title}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {committee.members.map((member, memberIndex) => (
-                  <div key={memberIndex} className="bg-gradient-to-br from-emerald-50 to-teal-50 p-6 rounded-xl border border-emerald-200 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center mb-3">
-                      <FaUser className="text-emerald-600 mr-2" />
-                      <h3 className="font-bold text-emerald-800">{member.name}</h3>
+          {committeeData.map((committee, index) => (
+            <div 
+              key={index}
+              className="bg-white rounded-3xl shadow-xl overflow-hidden card-hover animate-fadeInUp"
+              style={{animationDelay: `${index * 0.2}s`}}
+            >
+              <div className="bg-gradient-to-r from-emerald-600 to-teal-700 p-8">
+                <h2 className="text-3xl font-bold text-white text-center">
+                  {committee.title}
+                </h2>
+              </div>
+              
+              <div className="p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                  {committee.members.map((member, idx) => (
+                    <div 
+                      key={idx}
+                      className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-all duration-300 group"
+                    >
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <FaUser className="text-white text-lg" />
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg font-bold text-emerald-800 mb-2 leading-tight">
+                            {member.name}
+                          </h3>
+                          
+                          <div className="flex items-center text-gray-600 mb-2">
+                            <FaUniversity className="text-emerald-600 mr-2 flex-shrink-0" />
+                            <span className="text-sm font-medium truncate">
+                              {member.affiliation}
+                            </span>
+                          </div>
+                          
+                          <div className="flex items-center text-gray-600">
+                            <FaEnvelope className="text-emerald-600 mr-2 flex-shrink-0" />
+                            <a 
+                              href={`mailto:${member.email}`}
+                              className="text-sm text-emerald-700 hover:text-emerald-800 transition-colors truncate"
+                            >
+                              {member.email}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-emerald-600 font-medium mb-2">{member.role}</p>
-                    <div className="flex items-center text-gray-600 text-sm mb-2">
-                      <FaUniversity className="mr-2" />
-                      <span>{member.affiliation}</span>
-                    </div>
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <FaEnvelope className="mr-2" />
-                      <a href={`mailto:${member.email}`} className="text-emerald-600 hover:text-emerald-800">
-                        {member.email}
-                      </a>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-16 text-center animate-fadeInUp">
+          <div className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold gradient-text-primary mb-4">
+              Join Our Committee
+            </h3>
+            <p className="text-gray-700 mb-6">
+              Interested in contributing to future conferences? We welcome experienced professionals to join our committees.
+            </p>
+            <a 
+              href="mailto:committee@icates2025.org"
+              className="btn-primary inline-block"
+            >
+              Contact Us
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -34,8 +34,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-white/98 backdrop-blur-xl shadow-2xl py-2 border-b border-emerald-100' 
-        : 'bg-white/90 backdrop-blur-lg py-4 shadow-lg'
+        ? 'bg-white/98 backdrop-blur-xl shadow-2xl py-3 border-b border-emerald-200' 
+        : 'bg-white/95 backdrop-blur-lg py-4 shadow-xl'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -49,10 +49,10 @@ const Navbar = () => {
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-900">
+              <h1 className="text-xl font-bold text-gray-900 leading-tight">
                 ICATES-2025
               </h1>
-              <p className="text-xs text-emerald-700 font-semibold">Engineering & Science</p>
+              <p className="text-xs text-emerald-800 font-bold leading-tight">Engineering & Science</p>
             </div>
           </Link>
 

@@ -134,19 +134,29 @@
   background-clip: text;
 }
 
-/* Professional emerald-teal gradient */
+/* Professional emerald-teal gradient with better contrast */
 .gradient-text-primary {
-  background: linear-gradient(135deg, #047857, #0f766e, #115e59);
+  background: linear-gradient(135deg, #064e3b, #065f46, #047857);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-weight: 700;
 }
 
 .gradient-text-secondary {
-  background: linear-gradient(135deg, #0f766e, #0d9488, #14b8a6);
+  background: linear-gradient(135deg, #047857, #059669, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-weight: 600;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 /* Smooth scroll */
@@ -187,13 +197,22 @@ html {
   transform-style: preserve-3d;
 }
 
-/* Professional button styles */
+/* Professional button styles with better visibility */
 .btn-primary {
-  @apply bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-semibold py-4 px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-base border-2 border-emerald-600;
+  @apply bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-bold py-4 px-8 sm:px-10 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl text-base border-2 border-emerald-600 relative z-30;
 }
 
 .btn-secondary {
-  @apply bg-white border-2 border-emerald-700 text-emerald-800 hover:bg-emerald-50 font-semibold py-4 px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-base;
+  @apply bg-white border-2 border-emerald-700 text-emerald-800 hover:bg-emerald-50 font-bold py-4 px-8 sm:px-10 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl text-base relative z-30;
+}
+
+/* Ensure text readability */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-dark {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Improved mobile responsiveness */

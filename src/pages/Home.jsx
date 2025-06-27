@@ -60,7 +60,7 @@ const Home = () => {
     <div className="overflow-hidden pt-16">
       {/* Enhanced Hero Section */}
       <section 
-        className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-24 pb-16 z-20"
+        className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-32 pb-24 z-10"
         style={{
           background: "linear-gradient(135deg, rgba(5,46,22,0.95) 0%, rgba(6,78,59,0.93) 30%, rgba(15,118,110,0.9) 70%, rgba(20,184,166,0.85) 100%)",
           transform: `translateY(${scrollY * 0.3}px)`
@@ -140,12 +140,12 @@ const Home = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-12 animate-fadeInUp px-4 relative z-40" style={{animationDelay: '1.5s'}}>
-            <Link to="/registration" className="btn-primary group w-full sm:w-auto text-center">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16 animate-fadeInUp px-4 relative z-30" style={{animationDelay: '1.5s'}}>
+            <Link to="/registration" className="btn-primary group w-full sm:w-auto text-center transform hover:scale-105">
               Register Now
               <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
-            <Link to="/call-for-papers" className="btn-secondary group w-full sm:w-auto text-center">
+            <Link to="/call-for-papers" className="btn-secondary group w-full sm:w-auto text-center transform hover:scale-105">
               Submit Paper
               <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
@@ -159,7 +159,7 @@ const Home = () => {
       </section>
 
       {/* Enhanced Statistics Section */}
-      <section className="py-24 bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden z-10">
+      <section className="py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden z-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="text-center mb-20 animate-fadeInUp">
@@ -188,7 +188,7 @@ const Home = () => {
       </section>
 
       {/* Enhanced About Section */}
-      <section id="about" className="py-20 bg-gradient-to-br from-white to-purple-50 relative z-10">
+      <section id="about" className="py-32 bg-gradient-to-br from-white to-emerald-50 relative z-20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-4xl font-bold gradient-text-purple relative pb-4 inline-block">
