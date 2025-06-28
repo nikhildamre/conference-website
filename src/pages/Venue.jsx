@@ -14,11 +14,7 @@ const Venue = () => {
           <div className="prose max-w-none">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <img 
-                  src="https://via.placeholder.com/600x400/3b82f6/ffffff?text=VPPCOE+Campus"
-                  alt="VPPCOE Campus"
-                  className="w-full h-96 rounded-xl object-cover shadow-lg"
-                />
+                <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-96" />
                 
                 <div className="mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
                   <h3 className="text-xl font-bold text-blue-900 mb-4">VPPCOE Campus</h3>

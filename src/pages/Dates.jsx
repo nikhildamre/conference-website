@@ -1,130 +1,72 @@
-
 import React from 'react';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 const Dates = () => {
   const importantDates = [
-    {
-      title: "Abstract Submission Deadline",
-      date: "November 30, 2024",
-      description: "Submit your abstract for review"
-    },
-    {
-      title: "Full Paper Submission",
-      date: "December 15, 2024",
-      description: "Complete paper submission deadline"
-    },
-    {
-      title: "Notification of Acceptance",
-      date: "January 25, 2025",
-      description: "Authors will be notified of paper acceptance"
-    },
-    {
-      title: "Final Paper Submission",
-      date: "February 10, 2025",
-      description: "Camera-ready paper submission"
-    },
-    {
-      title: "Early Bird Registration",
-      date: "February 20, 2025",
-      description: "Register early for discounted rates"
-    },
-    {
-      title: "Conference Dates",
-      date: "March 15-17, 2025",
-      description: "Three days of presentations and networking"
-    }
+    { event: 'Abstract Submission Deadline', date: 'June 15, 2025' },
+    { event: 'Full Paper Submission Deadline', date: 'July 15, 2025' },
+    { event: 'Notification of Acceptance', date: 'August 15, 2025' },
+    { event: 'Early Bird Registration', date: 'August 30, 2025' },
+    { event: 'Camera Ready Submission', date: 'September 10, 2025' },
+    { event: 'Conference Dates', date: 'October 04-05, 2025' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 pt-24 pb-16">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pt-20 pb-10">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h1 className="text-5xl font-bold gradient-text-primary mb-6">
-            Important Dates
-          </h1>
-          <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mx-auto mb-6"></div>
-          <p className="text-gray-700 text-xl max-w-3xl mx-auto">
-            Mark your calendar with these crucial deadlines and conference dates
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {importantDates.map((item, index) => (
-            <div key={index} className="bg-white rounded-3xl shadow-xl p-8 card-hover animate-scaleIn" style={{animationDelay: `${index * 0.1}s`}}>
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FaCalendarAlt className="text-white text-xl" />
-                </div>
-                
-                <div className="flex-grow">
-                  <h3 className="text-xl font-bold gradient-text-primary mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-emerald-700 text-lg font-semibold mb-2">
-                    {item.date}
-                  </p>
-                  <p className="text-gray-600">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Conference Schedule Preview */}
-        <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl shadow-2xl text-white p-8 mb-12 animate-fadeInUp">
-          <div className="text-center mb-8">
-            <FaClock className="text-4xl mb-4 mx-auto" />
-            <h2 className="text-3xl font-bold">Conference Schedule</h2>
-            <p className="text-emerald-100 mt-2">March 15-17, 2025</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-2">Day 1</h3>
-              <p className="text-emerald-100 mb-2">March 15, 2025</p>
-              <p className="text-sm text-emerald-200">Opening Ceremony & Keynote</p>
-            </div>
-            <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-2">Day 2</h3>
-              <p className="text-emerald-100 mb-2">March 16, 2025</p>
-              <p className="text-sm text-emerald-200">Technical Sessions & Workshops</p>
-            </div>
-            <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-2">Day 3</h3>
-              <p className="text-emerald-100 mb-2">March 17, 2025</p>
-              <p className="text-sm text-emerald-200">Poster Sessions & Closing</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Submission Guidelines */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 animate-fadeInUp">
-          <h2 className="text-3xl font-bold gradient-text-primary text-center mb-8">
-            Submission Guidelines
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-emerald-800 mb-4">Paper Requirements</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• All submissions must be original and not published elsewhere</li>
-                <li>• Papers should be submitted in IEEE format</li>
-                <li>• Maximum length: 6 pages including references</li>
-                <li>• Submissions will undergo double-blind peer review</li>
-              </ul>
+        <h1 className="text-4xl font-bold text-blue-900 mb-8 text-center">
+          Important Dates
+          <div className="w-32 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full mx-auto mt-4"></div>
+        </h1>
+        
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="prose max-w-none">
+            <div className="bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl p-6 mb-8">
+              <h2 className="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                <FaCalendarAlt className="mr-3 text-cyan-600" />
+                Conference Timeline
+              </h2>
+              <p className="text-gray-700">
+                Mark your calendars for these important deadlines and events
+              </p>
             </div>
             
-            <div>
-              <h3 className="text-xl font-bold text-emerald-800 mb-4">Registration</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• At least one author must register for the conference</li>
-                <li>• Early bird registration available until February 20</li>
-                <li>• Student discounts available</li>
-                <li>• Group registration discounts for 5+ participants</li>
+            <div className="max-w-4xl mx-auto">
+              <ul className="space-y-6">
+                {importantDates.map((date, index) => (
+                  <li 
+                    key={index}
+                    className="flex items-start border-b border-gray-200 pb-6 last:border-0 last:pb-0"
+                  >
+                    <div className="flex-shrink-0 bg-blue-100 text-blue-800 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                      <span className="font-bold">{index + 1}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-xl font-semibold text-blue-900">{date.event}</h3>
+                      <div className="mt-2 flex items-center text-blue-600">
+                        <FaCalendarAlt className="mr-2" />
+                        <span className="font-semibold">{date.date}</span>
+                      </div>
+                    </div>
+                    <button className="ml-4 bg-blue-50 text-blue-700 hover:bg-blue-100 text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+                      Add to Calendar
+                    </button>
+                  </li>
+                ))}
               </ul>
+              
+              <div className="mt-12 bg-blue-50 border border-blue-200 rounded-xl p-6">
+                <h3 className="text-xl font-bold text-blue-800 mb-3">Note</h3>
+                <p className="text-blue-800 mb-2">
+                  All deadlines are at 11:59 PM Anywhere on Earth (AoE)
+                </p>
+                <p className="text-gray-700">
+                  For any queries regarding deadlines or extensions, please contact the organizing committee at 
+                  <a href="mailto:dates@icates2025.vppcoe.in" className="text-cyan-600 hover:underline ml-1">
+                    dates@icates2025.vppcoe.in
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

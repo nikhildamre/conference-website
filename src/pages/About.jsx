@@ -27,11 +27,7 @@ const About = () => {
             
             <h2 className="text-2xl font-bold text-blue-800 mb-4">Organizing Institution</h2>
             <div className="flex items-start mb-8">
-              <img 
-                src="https://via.placeholder.com/64x64/1e40af/ffffff?text=VPPCOE"
-                alt="VPPCOE Logo"
-                className="w-16 h-16 rounded-xl mr-4 object-contain bg-white p-2"
-              />
+              <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 mr-4" />
               <div>
                 <h3 className="text-xl font-bold">VPPCOE, Mumbai</h3>
                 <p className="text-gray-700">
