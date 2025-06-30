@@ -9,105 +9,104 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
+    { name: 'About', path: '/about' },
     { name: 'Call for Papers', path: '/call-for-papers' },
-    { name: 'Publication', path: '/publication' },
-    { name: 'Dates', path: '/dates' },
+    { name: 'Speakers', path: '/speakers' },
     { name: 'Committees', path: '/committees' },
-    { name: 'Keynote Speakers', path: '/speakers' },
-    { name: 'Registration', path: '/registration' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: 'Dates', path: '/dates' },
+    { name: 'Publication', path: '/publication' },
     { name: 'Venue', path: '/venue' },
+    { name: 'Registration', path: '/registration' },
+    { name: 'Contact', path: '/contact' }
   ];
 
-  return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#033344] shadow-lg py-2' : 'bg-gradient-to-b from-[#033344] to-[#05506c] py-4'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <img 
-              src="/logo.png" 
-              alt="College Logo" 
-              className="h-12 w-auto transition-transform duration-300 hover:scale-105"
-            />
-            <div className="hidden md:block ml-4">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                      location.pathname === link.path
-                        ? 'text-cyan-300 font-bold border-b-2 border-cyan-300'
-                        : 'text-white hover:text-cyan-200'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          <div className="hidden md:block text-lime-300 text-xl font-bold animate-pulse">
-            IET
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <div className="text-lime-300 text-xl font-bold mr-4">IET</div>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-cyan-200 focus:outline-none"
-            >
-              {isOpen ? (
-                <FaTimes className="h-6 w-6" />
-              ) : (
-                <FaBars className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
+  const isActive = (path) => location.pathname === path;
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#033344]">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+      scrolled 
+        ? 'bg-white/98 backdrop-blur-xl shadow-2xl py-3 border-b border-blue-200' 
+        : 'bg-white/95 backdrop-blur-lg py-4 shadow-xl'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-12 h-12 bg-gradient-to-br from-slate-600 to-indigo-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+              <img 
+                src="https://via.placeholder.com/40x40/ffffff/3b82f6?text=VPPCOE" 
+                alt="VPPCOE Logo" 
+                className="w-8 h-8 object-contain"
+              />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-xl font-bold text-gray-900 leading-tight">
+                ICATES-2025
+              </h1>
+              <p className="text-xs text-blue-800 font-bold leading-tight">Engineering & Science</p>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === link.path
-                    ? 'text-cyan-300 font-bold'
-                    : 'text-white hover:text-cyan-200'
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
+                  isActive(link.path)
+                    ? 'text-blue-700 bg-blue-50 font-bold'
+                    : 'text-gray-800 hover:text-blue-700 hover:bg-blue-50/70'
                 }`}
+              >
+                {link.name}
+                {isActive(link.path) && (
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"></div>
+                )}
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-xl bg-blue-100 text-blue-700 hover:bg-blue-200 transition-all duration-300"
+          >
+            {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
+          isOpen ? 'max-h-screen opacity-100 mt-4' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 space-y-2 border border-blue-200 shadow-lg">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
                 onClick={() => setIsOpen(false)}
+                className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                  isActive(link.path)
+                    ? 'text-blue-600 bg-blue-50 font-semibold'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                }`}
               >
                 {link.name}
               </Link>
             ))}
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

@@ -2,17 +2,20 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import CallForPapers from './pages/CallForPapers';
-import Publication from './pages/Publication';
-import Dates from './pages/Dates';
-import Committees from './pages/Committees';
 import Speakers from './pages/Speakers';
-import Registration from './pages/Registration';
-import Contact from './pages/Contact';
+import Committees from './pages/Committees';
+import Dates from './pages/Dates';
+import Publication from './pages/Publication';
 import Venue from './pages/Venue';
-import ScrollToTop from './components/ScrollToTop';
+import Registration from './pages/Registration';
+import RegistrationForm from './pages/RegistrationForm';
+import Contact from './pages/Contact';
+import AdminPanel from './pages/AdminPanel';
+import PaperSubmission from './pages/PaperSubmission';
 
 function App() {
   return (
@@ -25,13 +28,16 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/call-for-papers" element={<CallForPapers />} />
-            <Route path="/publication" element={<Publication />} />
-            <Route path="/dates" element={<Dates />} />
-            <Route path="/committees" element={<Committees />} />
             <Route path="/speakers" element={<Speakers />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/committees" element={<Committees />} />
+            <Route path="/dates" element={<Dates />} />
+            <Route path="/publication" element={<Publication />} />
             <Route path="/venue" element={<Venue />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/registration-form" element={<RegistrationForm />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/paper-submission" element={<PaperSubmission />} />
           </Routes>
         </main>
         <Footer />
